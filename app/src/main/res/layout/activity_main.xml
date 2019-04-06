@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/CoordinateRun"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:background="@drawable/mytextview1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"
+            android:text="Co-ordinates"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:background="@drawable/mytextview1"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="Runs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/BowlerRecyclerView"
+        android:layout_below="@+id/CoordinateRun"
+        android:layout_width="match_parent"
+        android:layout_height="570dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/AddScore"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_add_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/ClearList"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/ChangeBowlerButton"
+        android:textSize="10dp"
+        android:text="Bowler Name"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/CurrentbowlerTv"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/BowlerRecyclerView"
+        android:text=""
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+</RelativeLayout>
