@@ -3,6 +3,7 @@ package sid.com.bowlerperfornceanalysis;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +29,8 @@ import sid.com.bowlerperfornceanalysis.Model.Score;
 
 public class MainActivity extends AppCompatActivity {
     List<Score> scoreList = new ArrayList<>();
+    List<Score> scorelist0 = new ArrayList<>();
+    List<Score> scorelist1 = new ArrayList<>();
     RecyclerView scoreRecyclerView;
     ScoreAdapter scoreAdapter;
     FloatingActionButton addScoreButton, clearScoreButton;
@@ -77,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        calculate();
     }
 
     private void changemyDialog() {
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void openDialog(Context context) {
+    private void openDialog(final Context context) {
         android.support.v7.app.AlertDialog.Builder alertDialog = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Enter Details:");
 
@@ -132,7 +135,25 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                addScores(DialogCoord.getText().toString(), DialogRuns.getText().toString());
+                if(!DialogCoord.getText().toString().isEmpty() || !DialogRuns.getText().toString().isEmpty()){
+                    addScores(DialogCoord.getText().toString(), DialogRuns.getText().toString());
+
+                    if(ChangeBowlerButton.getText().toString().equals(String.valueOf(0))){
+                        scorelist0.add(new Score(DialogCoord.getText().toString(),DialogRuns.getText().toString()));
+                    }
+                    else if(ChangeBowlerButton.getText().toString().equals(String.valueOf(1))){
+                        scorelist1.add(new Score(DialogCoord.getText().toString(),DialogRuns.getText().toString()));
+                    }
+                    else {
+                        Toast.makeText(context, "Bowler Number", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(context, "Blamk fields not allowed!", Toast.LENGTH_SHORT).show();
+                }
+
+
+
             }
         });
 
@@ -153,15 +174,18 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        startActivity(new Intent(MainActivity.this,ResultActivity.class));
+        calculate();
+        Toast.makeText(this, Common.staticArea0, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,Common.staticArea1,Toast.LENGTH_SHORT).show();
+        return super.onOptionsItemSelected(item);
+    }
+
     private void calculate() {
         int counter = 0;
 
-        List<Score> scorelist0 = new ArrayList<>();
-        scorelist0.add(new Score("1", "7"));
-        scorelist0.add(new Score("2", "10"));
-        scorelist0.add(new Score("3", "5"));
-        scorelist0.add(new Score("4", "-5"));
-        scorelist0.add(new Score("2", "5"));
 
         float[] arrayArea0 = new float[28];
         float[] arrayCount0 = new float[28];
@@ -205,17 +229,14 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("The best area0 is " + area0 + " with economy of " + smallest0);
         System.out.println("The bowler economy0 is " + sumRuns0 / sumCount0);
 
-        List<Score> scoreList1 = new ArrayList<>();
-        scoreList1.add(new Score("1", "3"));
-        scoreList1.add(new Score("2", "13"));
-        scoreList1.add(new Score("3", "5"));
-        scoreList1.add(new Score("4", "-10"));
-        scoreList1.add(new Score("2", "9"));
+        Common.staticArea0 = "Area0: "+String.valueOf(area0);
+        Common.staticSmallest0 = "Smallest0: "+String.valueOf(smallest0);
+        Common.staticAvg0="Avg0:"+String.valueOf(sumRuns0 / sumCount0);
 
         float[] arrayArea1 = new float[28];
         float[] arrayCount1 = new float[28];
 
-        for (Score scor1 : scoreList1) {
+        for (Score scor1 : scorelist1) {
             arrayArea1[Integer.parseInt(scor1.getCoordinates()) - 1] = arrayArea1[Integer.parseInt(scor1.getCoordinates()) - 1]
                     + Float.parseFloat(scor1.getRuns());
 
@@ -232,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(counter + ":" + count);
             counter++;
         }
-
+//-------------------------------------------------------------------------------------------------------------------------------------
         float smallest1 = arrayArea1[0] / arrayCount1[0];
         int area1 = 0;
         int bowlerno1 = 1;
@@ -255,6 +276,10 @@ public class MainActivity extends AppCompatActivity {
 
             System.out.println("The best area1 is " + area1 + " with economy of " + smallest1);
             System.out.println("The bowler economy1 is " + sumRuns1 / sumCount1);
+
+            Common.staticArea1 = "Area1: "+String.valueOf(area1);
+            Common.staticSmallest1 = "Smallest1: "+String.valueOf(smallest1);
+            Common.staticSmallest1="Avg1:"+String.valueOf(sumRuns0 / sumCount1);
         }
 
         float[] totalArea = new float[28];
