@@ -22,8 +22,51 @@
         android:layout_height="50dp" />
 
     <TextView
+        android:textSize="25dp"
         android:id="@+id/Avg0"
         android:layout_below="@+id/Area0"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:textSize="25dp"
+        android:layout_below="@+id/Avg0"
+        android:id="@+id/Smallest1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:textSize="25dp"
+        android:layout_below="@+id/Smallest1"
+        android:id="@+id/Area1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:textSize="25dp"
+        android:layout_below="@+id/Area1"
+        android:id="@+id/Avg1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:layout_below="@+id/Avg1"
+        android:id="@+id/totalSmallest"
+        android:textSize="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/totalArea"
+        android:textSize="25dp"
+        android:layout_below="@+id/totalSmallest"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/totalAvg"
+        android:textSize="25dp"
+        android:layout_below="@+id/totalArea"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 </RelativeLayout>

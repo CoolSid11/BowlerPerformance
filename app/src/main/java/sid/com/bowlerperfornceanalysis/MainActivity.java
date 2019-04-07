@@ -176,10 +176,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        startActivity(new Intent(MainActivity.this,ResultActivity.class));
+
         calculate();
-        Toast.makeText(this, Common.staticArea0, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,Common.staticArea1,Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(MainActivity.this,ResultActivity.class));
+//        Toast.makeText(this, Common.staticArea0, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,Common.staticArea1,Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
     }
 
@@ -279,9 +280,9 @@ public class MainActivity extends AppCompatActivity {
 
             Common.staticArea1 = "Area1: "+String.valueOf(area1);
             Common.staticSmallest1 = "Smallest1: "+String.valueOf(smallest1);
-            Common.staticSmallest1="Avg1:"+String.valueOf(sumRuns0 / sumCount1);
+            Common.staticAvg1="Avg1:"+String.valueOf(sumRuns0 / sumCount1);
         }
-
+        //------------------------------------------------------------------------
         float[] totalArea = new float[28];
         float[] totalCount = new float[28];
         int cou = 0;
@@ -320,6 +321,10 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("The bowler economyT is " + totalsumRuns / totalcoun);
 
         Log.d("*areaT",String.valueOf(totalare));
+
+        Common.staticTotalArea = "Total Area: "+String.valueOf(totalare);
+        Common.staticTotalSmallest = "Total Smallest : "+String.valueOf(totalsmallest);
+        Common.staticTotalAvg="Total Avg:"+String.valueOf(totalsumRuns / totalcoun);
     }
 
     private void addScores(String coord, String runs) {

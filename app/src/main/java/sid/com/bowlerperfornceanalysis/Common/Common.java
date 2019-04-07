@@ -6,4 +6,7 @@ public class Common {
     public static String staticSmallest0,staticArea0,staticAvg0;
 
     public static String staticSmallest1,staticArea1,staticAvg1;
+
+    public static String staticTotalSmallest, staticTotalArea, staticTotalAvg;
+
 }
